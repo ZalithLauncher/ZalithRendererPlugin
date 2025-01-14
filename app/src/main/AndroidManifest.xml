@@ -4,7 +4,8 @@
     <application
         android:allowBackup="true"
         android:extractNativeLibs="true"
-        android:icon="@drawable/img_app"
+        android:icon="@mipmap/icon"
+        android:roundIcon="@mipmap/icon_round"
         android:label="@string/app_name"
         android:supportsRtl="true">
 
@@ -18,7 +19,7 @@
         </activity>
 
         <meta-data
-            android:name="fclPlugin"
+            android:name="zalithRendererPlugin"
             android:value="true" />
         <meta-data
             android:name="des"
@@ -26,9 +27,12 @@
         <meta-data
             android:name="renderer"
             android:value="${renderer}" />
-        <meta-data
-            android:name="boatEnv"
-            android:value="${boatEnv}" />
+<!-- FCL可以额外使用Boat启动方式，但ZalithLauncher只能使用Pojav这一种启动方式，所以移除了boatEnv环境变量的配置项，因此，这个渲染器插件就不能为FCL提供支持！ -->
+<!-- FCL can additionally use the Boat launch method, but ZalithLauncher can only use the Pojav launch method.
+As a result, the boatEnv environment variable configuration option was removed. Therefore, this renderer plugin cannot provide support for FCL! -->
+<!--        <meta-data-->
+<!--            android:name="boatEnv"-->
+<!--            android:value="${boatEnv}" />-->
         <meta-data
             android:name="pojavEnv"
             android:value="${pojavEnv}" />
