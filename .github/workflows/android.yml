@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  BuildRelease:
+  Build:
     runs-on: ubuntu-22.04
 
     steps:
@@ -19,12 +19,12 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Build Release ${{matrix.arch}}
+      - name: Build Plugin ${{matrix.arch}}
         run: |
           chmod +x gradlew
-          ./gradlew ZalithRendererPlugin:assemblerelease
+          ./gradlew app:assemblerelease
 
-      - name: Upload Release ${{matrix.arch}}
+      - name: Upload Plugin ${{matrix.arch}}
         continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
