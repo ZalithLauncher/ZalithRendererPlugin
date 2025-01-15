@@ -1,0 +1,32 @@
+name: Android CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  BuildRelease:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build Release ${{matrix.arch}}
+        run: |
+          chmod +x gradlew
+          ./gradlew ZalithRendererPlugin:assemblerelease
+
+      - name: Upload Release ${{matrix.arch}}
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZalithRendererPlugin
+          path: app/build/outputs/apk/release/*

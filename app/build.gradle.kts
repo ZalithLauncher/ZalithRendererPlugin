@@ -9,6 +9,15 @@ android {
     namespace = nameId
     compileSdk = 34
 
+    signingConfigs {
+        create("release") {
+            keyAlias = "key0"
+            keyPassword = "ZALITH_RENDERER_PLUGIN"
+            storeFile = file("plugin-key.jks")
+            storePassword = "ZALITH_RENDERER_PLUGIN"
+        }
+    }
+
     defaultConfig {
         applicationId = nameId
         minSdk = 26
